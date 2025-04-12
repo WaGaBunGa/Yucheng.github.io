@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11360324</title>
+    <style>
+        @font-face {
+            font-family: 'SHPinscher';
+            src: url('fonts/SHPinscher-Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'BTCoIcon';
+            src: url('fonts/gotham_bold_regular-webfont.woff2') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'GothamLight';
+            src: url('fonts/gotham_regular-webfont.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: right top;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            height: 650px;
+            margin-top: 0;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -webkit-transform: translateZ(0);
+            -moz-transform: translateZ(0);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(44, 62, 80, 0.3);
+            z-index: 1;
+        }
+
+        header h1 {
+            position: relative;
+            z-index: 10;
+            text-shadow: 10px 10px 20px rgb(255, 195, 43);
+            font-size: 8em;
+            margin-bottom: 40px;
+            font-family: 'SHPinscher', sans-serif;
+            font-weight: normal;
+            white-space: nowrap;
+            overflow: visible;
+            animation: marquee 30s linear infinite;
+            width: 100%;
+            text-align: center;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translate(100vw, -50%);
+            }
+            100% {
+                transform: translate(-100vw, -50%);
+            }
+        }
+
+        nav {
+            background-color: transparent;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: none;
+        }
+
+        nav.scrolled {
+            background-color: rgba(207, 143, 47);
+            box-shadow: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            align-items: center;
+            position: relative;
+        }
+
+        nav .logo {
+            font-family: 'BTCoIcon', sans-serif;
+            font-size: 24px;
+            color: rgb(244, 155, 22);
+            text-decoration: none;
+            position: fixed;
+            left: 20px;
+            top: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul li:not(:first-child) {
+            margin-left: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        nav a:hover {
+            transform: scale(1.2);
+            color: white;
+        }
+
+        section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #cf8f2f;
+            padding-bottom: 10px;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            margin: 0;
+            display: block;
+            object-fit: cover;
+            order: 2;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .interests-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .interest-item, .interest-card {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .interest-item h3, .interest-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .interest-item p, .interest-card p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .interest-item.sports {
+            background: url('sport/basketball.gif') center/cover;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .interest-item.sports.basketball {
+            background: url('sport/basketball.gif') center/cover;
+        }
+
+        .interest-item.sports.volleyball {
+            background: url('sport/v.gif') center/cover;
+        }
+
+        .interest-item.sports.gym {
+            background: url('sport/g.gif') center/cover;
+        }
+
+        .interest-item.sports:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .interest-item.sports p:first-of-type {
+            opacity: 1;
+            height: auto;
+            margin-top: 15px;
+        }
+
+        .interest-item.sports p:nth-of-type(2) {
+            opacity: 0;
+            height: 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .interest-item.sports:hover p:nth-of-type(2) {
+            opacity: 1;
+            height: auto;
+            margin-top: 15px;
+        }
+
+        .interest-item.sports p:nth-of-type(3) {
+            opacity: 0;
+            height: 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .interest-item.sports:hover p:nth-of-type(3) {
+            opacity: 1;
+            height: auto;
+            margin-top: 15px;
+        }
+
+        .interest-item.sports::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .interest-item.sports h3,
+        .interest-item.sports p {
+            position: relative;
+            z-index: 2;
+        }
+
+        #home {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+        }
+
+        #home .content {
+            flex: 1;
+            text-align: left;
+        }
+
+        #home h2 {
+            width: 100%;
+            text-align: left;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #cf8f2f;
+            color: white;
+            width: 120px;
+            height: 40px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: rgb(207, 143, 47);
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        .social-media {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .social-media a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .social-media a:hover {
+            transform: scale(1.2);
+        }
+
+        .social-media a::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .social-media a:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .social-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .social-media img[alt="Line"] {
+            width: 80%;
+            height: 80%;
+            margin: 10%;
+        }
+
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(42, 224, 221);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-title {
+            font-family: 'GothamLight', sans-serif;
+            font-size: 4em;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+
+
+        .loading-subtitle {
+            font-size: 1.2em;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .loading-subtitle span {
+            display: inline-block;
+            animation: wave 1.5s infinite;
+        }
+
+        .loading-subtitle span:nth-child(1) { animation-delay: 0.1s; }
+        .loading-subtitle span:nth-child(2) { animation-delay: 0.2s; }
+        .loading-subtitle span:nth-child(3) { animation-delay: 0.3s; }
+        .loading-subtitle span:nth-child(4) { animation-delay: 0.4s; }
+        .loading-subtitle span:nth-child(5) { animation-delay: 0.5s; }
+        .loading-subtitle span:nth-child(6) { animation-delay: 0.6s; }
+        .loading-subtitle span:nth-child(7) { animation-delay: 0.7s; }
+        .loading-subtitle span:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .info-table th,
+        .info-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .info-table th {
+            background-color: #cf8f2f;
+            color: white;
+            width: 30%;
+        }
+
+        .info-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .info-table tr:hover {
+            background-color: #f1f3f5;
+        }
+
+        .interest-card {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .interest-card:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .interest-card p:first-of-type {
+            opacity: 1;
+            height: auto;
+            margin-top: 15px;
+        }
+
+        .interest-card p:nth-of-type(2) {
+            opacity: 0;
+            height: 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .interest-card:hover p:nth-of-type(2) {
+            opacity: 1;
+            height: auto;
+            margin-top: 15px;
+        }
+
+        .interest-card p:nth-of-type(3) {
+            opacity: 0;
+            height: 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .interest-card:hover p:nth-of-type(3) {
+            opacity: 1;
+            height: auto;
+            margin-top: 15px;
+        }
+
+        .interest-card.travel {
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .interest-card.travel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .interest-card.travel h3,
+        .interest-card.travel p {
+            position: relative;
+            z-index: 2;
+        }
+
+        .sport-link {
+            cursor: pointer;
+            text-decoration: underline;
+            transition: all 0.3s ease;
+        }
+
+        .sport-link:hover {
+            color: #cf8f2f;
+        }
+
+        .interest-card.music {
+            background: url('music/ear.jpg') center/cover;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .interest-card.music.rap {
+            background: url('music/rap.jpg') center/cover;
+        }
+
+        .interest-card.music.rnb {
+            background: url('music/F.jpg') center/cover;
+        }
+
+        .interest-card.music.rock {
+            background: url('music/500.jpg') center/cover;
+        }
+
+        .interest-card.music::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .interest-card.music h3,
+        .interest-card.music p {
+            position: relative;
+            z-index: 2;
+        }
+
+        .music-link {
+            cursor: pointer;
+            text-decoration: underline;
+            transition: all 0.3s ease;
+        }
+
+        .music-link:hover {
+            color: #cf8f2f;
+        }
+
+        .interest-card.music p:first-of-type {
+            opacity: 1;
+            height: auto;
+            margin-top: 15px;
+        }
+
+        .interest-card.music p:nth-of-type(2) {
+            opacity: 0;
+            height: 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .interest-card.music:hover p:nth-of-type(2) {
+            opacity: 1;
+            height: auto;
+            margin-top: 15px;
+        }
+
+        .interest-card.music p:nth-of-type(3) {
+            opacity: 0;
+            height: 0;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .interest-card.music:hover p:nth-of-type(3) {
+            opacity: 1;
+            height: auto;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-title">YU CHENG</div>
+        <div class="loading-subtitle">
+            <span>正</span>
+            <span>在</span>
+            <span>進</span>
+            <span>入</span>
+            <span>畫</span>
+            <span>面</span>
+            <span>.</span>
+            <span>.</span>
+            <span>.</span>
+        </div>
+    </div>
+
+    <header>
+        <h1>Welcome to my website</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#" class="logo">Yu Cheng</a></li>
+            <li><a href="#home">HOME 🏠</a></li>
+            <li><a href="#about">My Information 👤</a></li>
+            <li><a href="#interests">My Interest 📚</a></li>
+            <li><a href="#contact">Contact me 📞</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="home">
+            <div class="content">
+                <h2>HOME</h2>
+                <p>歡迎來到我的個人網站！我是蔡育誠，目前是銘傳大學(桃園校區)資訊工程學系大三的學生，
+                   在這個網頁中，我會分享我的生活、興趣、過往工作經驗，跟一些未來夢想。而這同時也是我
+                   首次製作的網站，發現製作網站的互動性和可玩性非常多元，並且也很有成就感。</p> 
+            </div>
+            <img src="albert.jpg" alt="個人照片" class="profile-image">
+        </section>
+
+        <section id="about">
+            <h2>My Information</h2>
+            <table class="info-table">
+                <tr>
+                    <th>姓名</th>
+                    <td>蔡育誠</td>
+                </tr>
+                <tr>
+                    <th>出生</th>
+                    <td>2004/05/17</td>
+                </tr>
+                <tr>
+                    <th>星座</th>
+                    <td>金牛座</td>
+                </tr>
+                <tr>
+                    <th>職業</th>
+                    <td>學生</td>
+                </tr>
+                <tr>
+                    <th>學校</th>
+                    <td>銘傳大學(就讀中)</td>
+                </tr>
+                <tr>
+                    <th>經歷</th>
+                    <td>補習班招生員、火鍋和牛排店員工、物流理貨員、服飾店店員</td>
+                </tr>
+                <tr>
+                    <th>個性</th>
+                    <td>隨和、慢熱、責任感、喜歡挑戰不同事物</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="interests">
+            <h2>My Interest</h2>
+            <div class="interests-grid">
+                <div class="interest-item sports basketball" id="sports-card">
+                    <h3>運動</h3>
+                    <p>
+                        <span class="sport-link" data-sport="basketball">籃球</span>、 
+                        <span class="sport-link" data-sport="volleyball">排球</span>、 
+                        <span class="sport-link" data-sport="gym">健身</span>
+                    </p>
+                    <p>運動對我是個很好釋放壓力的管道，同時也能夠培養他人默契，增強體壯，改變體態</p>
+                    <p style="font-size: 14px; color: #ffffff; margin-top: 10px;">點擊項目可變更圖片內容</p>
+                </div>
+                <div class="interest-card travel" id="travel-card">
+                    <h3>旅遊</h3>
+                    <p>結伴出遊、獨自放鬆</p>
+                    <p>探索新的地方，體驗不同的文化，或是放空享受一個人的放鬆時光</p>
+                </div>
+                <div class="interest-card music" id="music-card">
+                    <h3>聽歌</h3>
+                    <p>
+                        <span class="music-link" data-music="rap">饒舌</span>、 
+                        <span class="music-link" data-music="rnb">R&B</span>、 
+                        <span class="music-link" data-music="rock">搖滾</span>
+                    </p>
+                    <p>音樂能夠讓我放鬆，忘掉一切煩惱，沉靜在自己的世界，在騎車的時候聽歌，享受歌曲和旅行帶來的快樂</p>
+                    <p style="font-size: 14px; color: #ffffff; margin-top: 10px;">點擊項目可變更圖片內容</p>
+                </div>
+                
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact me</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>電子郵件</h3>
+                    <p>Albert3215149@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>社群媒體</h3>
+                    <div class="social-media">
+                        <a href="https://www.facebook.com/profile.php?id=100007138801963" target="_blank" data-tooltip="Facebook">
+                            <img src="social/FB.png" alt="Facebook">
+                        </a>
+                        <a href="https://line.me/ti/p/dLzQ3C4pc9" target="_blank" data-tooltip="Line">
+                            <img src="social/line.png" alt="Line">
+                        </a>
+                        <a href="https://www.instagram.com/5_chen_17/" target="_blank" data-tooltip="Instagram">
+                            <img src="social/ig.png" alt="Instagram">
+                        </a>
+                        <a href="https://www.threads.net/@5_chen_17" target="_blank" data-tooltip="Threads">
+                            <img src="social/threads.png" alt="Threads">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <a href="#" class="back-to-top">Back to Top</a>
+
+    <script>
+
+        let backgroundMusic = null;
+
+        window.addEventListener('load', function() {
+
+            const loadingScreen = document.querySelector('.loading-screen');
+
+            setTimeout(function() {
+                loadingScreen.classList.add('hidden');
+            }, 2000);
+
+            const travelCard = document.getElementById('travel-card');
+            let currentImage = 1;
+            const totalImages = 12;
+
+
+            function changeBackground() {
+                travelCard.style.backgroundImage = `url('play/${currentImage}.jpg')`;
+                currentImage = (currentImage % totalImages) + 1;
+            }
+
+            changeBackground();
+
+
+            setInterval(changeBackground, 2000);
+
+            const sportsCard = document.getElementById('sports-card');
+            const sportLinks = document.querySelectorAll('.sport-link');
+
+            sportLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sport = this.getAttribute('data-sport');
+                    
+
+                    sportsCard.classList.remove('basketball', 'volleyball', 'gym');
+                    
+
+                    sportsCard.classList.add(sport);
+                });
+            });
+
+
+            const logo = document.querySelector('.logo');
+            logo.addEventListener('click', function(e) {
+                e.preventDefault();
+                const glinAudio = new Audio('GLin.mp3');
+                glinAudio.volume = 0.7;
+                glinAudio.play();
+            });
+
+
+            const musicCard = document.getElementById('music-card');
+            const musicLinks = document.querySelectorAll('.music-link');
+
+
+            let hasClickedMusic = false;
+
+            const volume = 0.5;
+
+
+            musicCard.style.backgroundImage = "url('music/ear.jpg')";
+
+            musicLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const music = this.getAttribute('data-music');
+                    
+
+                    hasClickedMusic = true;
+
+
+                    if (backgroundMusic) {
+                        backgroundMusic.pause();
+                        backgroundMusic.currentTime = 0;
+                    }
+
+
+                    switch(music) {
+                        case 'rap':
+                            backgroundMusic = new Audio('music/da.mp3');
+                            musicCard.style.backgroundImage = "url('music/rap.jpg')";
+                            break;
+                        case 'rnb':
+                            backgroundMusic = new Audio('music/FL.mp3');
+                            musicCard.style.backgroundImage = "url('music/F.jpg')";
+                            break;
+                        case 'rock':
+                            backgroundMusic = new Audio('music/NF.mp3');
+                            musicCard.style.backgroundImage = "url('music/500.jpg')";
+                            break;
+                    }
+
+                    backgroundMusic.loop = true;
+                    backgroundMusic.volume = volume;
+                    backgroundMusic.play();
+                });
+            });
+
+
+            musicCard.addEventListener('mouseleave', function() {
+
+                if (hasClickedMusic) {
+
+                    if (backgroundMusic) {
+                        backgroundMusic.pause();
+                        backgroundMusic.currentTime = 0;
+                    }
+
+
+                    musicCard.style.backgroundImage = "url('music/ear.jpg')";
+                }
+            });
+        });
+
+
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            const backToTop = document.querySelector('.back-to-top');
+
+
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        document.querySelector('.back-to-top').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
+
